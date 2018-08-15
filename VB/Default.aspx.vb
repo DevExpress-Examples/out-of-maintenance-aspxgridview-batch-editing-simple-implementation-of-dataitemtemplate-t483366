@@ -67,7 +67,7 @@ Partial Public Class _Default
     End Sub
     Protected Sub CancelEditing(ByVal e As CancelEventArgs)
         e.Cancel = True
-        Grid.CancelEdit()
+        ASPxGridView1.CancelEdit()
     End Sub
     Public Class GridDataItem
         Public Property ID() As Integer
@@ -77,9 +77,9 @@ Partial Public Class _Default
     #End Region
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs)
-        Grid.DataSource = GridData
-        Grid.DataBind()
-        Grid.SettingsEditing.BatchEditSettings.AllowRegularDataItemTemplate = supportDataItemTemplate.Checked
+        ASPxGridView1.DataSource = GridData
+        ASPxGridView1.DataBind()
+        ASPxGridView1.SettingsEditing.BatchEditSettings.AllowRegularDataItemTemplate = supportDataItemTemplate.Checked
     End Sub
 
 End Class

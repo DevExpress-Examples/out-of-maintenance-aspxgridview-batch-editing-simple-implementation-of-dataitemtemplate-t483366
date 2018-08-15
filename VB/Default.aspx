@@ -8,22 +8,25 @@
 <head runat="server">
     <title></title>
     <script type="text/javascript">
-        function Grid_OnBatchEditEndEditing(s, e) {
+        function onGridBatchEditEndEditing(s, e) {
             var visibleIndex = e.visibleIndex;
             var rowValues = e.rowValues;
             var rate1 = ASPx.GetControlCollection().GetByName("RATE" + visibleIndex);
             if (rate1)
                 rate1.SetValue(e.rowValues[0].value);
         }
-
+        function onGridBatchEditChangesCanceling(s, e) {
+            setTimeout(function () {
+                ASPxGridView1.Refresh();
+            }, 200);
+        }
     </script>
 </head>
 <body>
     <form id="frmMain" runat="server">
         <dx:ASPxCheckBox ID="supportDataItemTemplate" runat="server" AutoPostBack="true" Text="Support data item template" Checked="true" />
 
-        <dx:ASPxGridView ID="Grid" runat="server" KeyFieldName="ID" OnBatchUpdate="Grid_BatchUpdate"
-            ClientInstanceName="gridView">
+        <dx:ASPxGridView ID="ASPxGridView1" ClientInstanceName="ASPxGridView1" runat="server" KeyFieldName="ID" OnBatchUpdate="Grid_BatchUpdate">
             <Columns>
                 <dx:GridViewDataSpinEditColumn Name="rate1" FieldName="rate" ReadOnly="false" Width="100px" Caption="Rate">
                     <PropertiesSpinEdit MinValue="0" MaxValue="10" NumberType="Integer"></PropertiesSpinEdit>
@@ -38,7 +41,7 @@
                 <dx:GridViewCommandColumn ShowEditButton="true" />
             </Columns>
             <SettingsEditing Mode="Batch" />
-            <ClientSideEvents BatchEditEndEditing="Grid_OnBatchEditEndEditing" />
+            <ClientSideEvents BatchEditEndEditing="onGridBatchEditEndEditing" BatchEditChangesCanceling="onGridBatchEditChangesCanceling" />
         </dx:ASPxGridView>
     </form>
 </body>
