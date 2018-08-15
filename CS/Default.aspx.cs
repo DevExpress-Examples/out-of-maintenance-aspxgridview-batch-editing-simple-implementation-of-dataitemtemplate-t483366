@@ -60,7 +60,7 @@ public partial class _Default: System.Web.UI.Page {
     }
     protected void CancelEditing(CancelEventArgs e) {
         e.Cancel = true;
-        Grid.CancelEdit();
+        ASPxGridView1.CancelEdit();
     }
     public class GridDataItem {
         public int ID { get; set; }
@@ -70,9 +70,9 @@ public partial class _Default: System.Web.UI.Page {
     #endregion
 
     protected void Page_Load(object sender, EventArgs e) {
-        Grid.DataSource = GridData;
-        Grid.DataBind(); 
-        Grid.SettingsEditing.BatchEditSettings.AllowRegularDataItemTemplate = supportDataItemTemplate.Checked;
+        ASPxGridView1.DataSource = GridData;
+        ASPxGridView1.DataBind();
+        ASPxGridView1.SettingsEditing.BatchEditSettings.AllowRegularDataItemTemplate = supportDataItemTemplate.Checked;
     }
    
 }
